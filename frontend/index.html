@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="QuickBite - Experience high-end food delivery right at your doorstep. Gourmet dishes, fast delivery, and seamless payments.">
+  <title>QuickBite | Premium Food Delivery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- --- AUTH PAGE VIEW --- -->
+  <div id="authView" class="view">
+    <div class="auth-container">
+      <div class="auth-orb orb-1"></div>
+      <div class="auth-orb orb-2"></div>
+      
+      <div class="auth-card">
+        <div class="auth-header">
+          <div class="logo-wrap">
+            <svg class="logo-icon" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.3 14.7L11 12.4V7h1.5v4.7l3.7 2.2-.7 1.1z"/>
+            </svg>
+          </div>
+          <h2 id="authTitle">Welcome Back</h2>
+          <p id="authDesc">Enter your details to order fresh food</p>
+        </div>
+        
+        <form class="auth-form" id="loginForm">
+          <div class="form-group" id="nameGroup" style="display: none;">
+            <label for="loginName">Full Name</label>
+            <div class="input-wrapper">
+              <input type="text" id="loginName" class="input-field" placeholder="Enter your name">
+              <svg class="input-icon" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <div class="input-wrapper">
+              <input type="email" id="loginEmail" class="input-field" placeholder="you@example.com" required value="guest@gemini.com">
+              <svg class="input-icon" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="input-wrapper">
+              <input type="password" id="loginPassword" class="input-field" placeholder="••••••••" required value="password123">
+              <svg class="input-icon" viewBox="0 0 24 24">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div class="auth-options">
+            <label class="remember-me">
+              <input type="checkbox" checked> Remember me
+            </label>
+            <a href="#" class="btn-text">Forgot Password?</a>
+          </div>
+          
+          <button type="submit" class="btn btn-primary auth-btn" id="authSubmitBtn">Sign In</button>
+        </form>
+        
+        <div class="auth-switch">
+          <a href="#" id="authSwitchLink">New to QuickBite? <span class="btn-text">Sign Up</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- --- MAIN APP LAYOUT CONTAINER --- -->
+  <div id="appLayoutView" class="view">
+    <div class="app-layout">
+      
+      <!-- HEADER / NAVIGATION -->
+      <header class="app-header">
+        <div class="header-container">
+          <a href="#/home" class="logo-link">
+            <svg class="logo-icon-small" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.3 14.7L11 12.4V7h1.5v4.7l3.7 2.2-.7 1.1z"/>
+            </svg>
+            <h1>QuickBite</h1>
+          </a>
+          
+          <div class="address-selector" onclick="showToast('Location selector mock: Address updated.', 'info')">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <span class="address-text" id="addressText">Loading Location...</span>
+          </div>
+          
+          <div class="header-search">
+            <svg viewBox="0 0 24 24">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input type="text" placeholder="Search cuisines, dishes, or restaurants..." class="search-input" id="searchInput">
+          </div>
+          
+          <nav class="header-nav">
+            <button class="nav-item-btn" id="cartDrawerBtn" aria-label="Open shopping cart">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+              </svg>
+              <span class="badge" id="cartBadge" style="display: none;">0</span>
+            </button>
+            
+            <div class="user-profile" id="userProfileMenu" onclick="logoutUser()">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="User Profile Image" class="profile-img">
+              <div class="profile-info">
+                <span class="profile-name" id="profileName">Guest User</span>
+                <span style="font-size: 0.7rem; color: var(--primary);">Sign Out</span>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      
+      
+      <!-- MAIN PAGE VIEWS -->
+      <main class="app-content">
+        
+        <!-- SUB-VIEW 1: DASHBOARD -->
+        <div id="dashboardSubview" class="app-subview">
+          
+          <!-- Promo banner slider -->
+          <div class="promo-slider" id="promoSlider">
+            <!-- Rendered via JS -->
+          </div>
+          
+          <!-- Categories list -->
+          <section class="categories-section">
+            <div class="section-title-row">
+              <h2>What's on your mind?</h2>
+            </div>
+            <div class="categories-container" id="categoriesContainer">
+              <!-- Rendered via JS -->
+            </div>
+          </section>
+          
+          <!-- Filters & sorting -->
+          <div class="filter-bar">
+            <div class="filter-pills">
+              <button class="filter-pill active" onclick="selectCategory('All')">All Cuisines</button>
+              <button class="filter-pill" onclick="showToast('Fast Delivery filter applied.', 'info')">Fast Delivery</button>
+              <button class="filter-pill" onclick="showToast('Free Shipping filter applied.', 'info')">Free Delivery</button>
+              <button class="filter-pill" onclick="showToast('Offers filter applied.', 'info')">Great Offers</button>
+            </div>
+            
+            <div class="sort-select-wrapper">
+              <label for="sortSelect" class="sort-label">Sort by</label>
+              <select class="sort-select" id="sortSelect">
+                <option value="rating">Rating: High to Low</option>
+                <option value="deliveryTime">Delivery Time</option>
+                <option value="distance">Distance</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Restaurants list grid -->
+          <section class="restaurants-grid" id="restaurantsGrid">
+            <!-- Rendered via JS -->
+          </section>
+        </div>
+        
+        
+        <!-- SUB-VIEW 2: RESTAURANT DETAIL -->
+        <div id="restaurantSubview" class="app-subview" style="display: none;">
+          
+          <!-- Back button link -->
+          <a href="#/home" class="btn btn-secondary" style="margin-bottom: 24px; padding: 8px 16px;">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: var(--text-main);"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back to Restaurants
+          </a>
+          
+          <!-- Restaurant hero info card -->
+          <div class="restaurant-hero" id="restaurantHero">
+            <div class="hero-overlay"></div>
+            <button class="favorite-btn" id="detailFavBtn" onclick="toggleDetailFavorite(event)">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+            <div class="hero-content">
+              <div class="hero-text">
+                <h1 id="heroName">Restaurant Title</h1>
+                <p class="hero-cuisines" id="heroCuisines">Cuisine category listing</p>
+                <div class="hero-stats">
+                  <div class="meta-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span id="heroDistance">1.2 km</span>
+                  </div>
+                  <div class="meta-item">
+                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.7L11 12.4V7h1.5v4.7l3.7 2.2-.7 1.1z"/></svg>
+                    <span id="heroTime">15-25 min</span>
+                  </div>
+                  <div class="meta-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                    <span id="heroDelFee">Delivery: $2.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-rating">
+                <span class="hero-rating-val" id="heroRatingVal">
+                  <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  4.8
+                </span>
+                <span class="hero-rating-count" id="heroRatingCount">340 reviews</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Menu layout division -->
+          <div class="menu-layout">
+            <!-- Sidebar sections navigations -->
+            <aside class="menu-sidebar">
+              <h3 class="sidebar-heading">Menu Categories</h3>
+              <ul class="menu-nav-list" id="menuNavList">
+                <!-- Rendered dynamically -->
+              </ul>
+            </aside>
+            
+            <!-- Core menu listing area -->
+            <div class="menu-content-container">
+              <!-- search & veg toggle header -->
+              <div class="menu-filter-header">
+                <div class="menu-search-wrapper">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                  </svg>
+                  <input type="text" placeholder="Search in menu..." class="menu-search-input" id="menuSearchInput">
+                </div>
+                
+                <div class="diet-filters">
+                  <button class="diet-filter-btn active" id="diet-all" onclick="setDietFilter('all')">All</button>
+                  <button class="diet-filter-btn" id="diet-veg" onclick="setDietFilter('veg')">
+                    <span class="diet-dot veg"></span> Veg Only
+                  </button>
+                  <button class="diet-filter-btn" id="diet-nonveg" onclick="setDietFilter('nonveg')">
+                    <span class="diet-dot nonveg"></span> Non-Veg Only
+                  </button>
+                </div>
+              </div>
+              
+              <div class="menu-content-area" id="menuContentArea">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- SUB-VIEW 3: CHECKOUT / PAYMENT -->
+        <div id="checkoutSubview" class="app-subview" style="display: none;">
+          
+          <h2 style="font-size: 2.2rem; margin-bottom: 32px;">Secure Checkout</h2>
+          
+          <div class="checkout-container">
+            <!-- Left Side: Shipping & Payment details forms -->
+            <div class="checkout-details-column">
+              
+              <form id="checkoutForm">
+                <!-- Section 1: Delivery details -->
+                <div class="checkout-section">
+                  <h3>
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Delivery Address
+                  </h3>
+                  
+                  <div class="checkout-form-grid">
+                    <div class="form-group">
+                      <label for="checkoutName">Recipient Name</label>
+                      <input type="text" id="checkoutName" class="input-field" style="padding-left: 16px;" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="checkoutPhone">Phone Number</label>
+                      <input type="text" id="checkoutPhone" class="input-field" style="padding-left: 16px;" placeholder="+1 (555) 019-2834" required value="+1 (555) 123-4567">
+                    </div>
+                    
+                    <div class="form-group full">
+                      <label for="checkoutAddress">Street Address</label>
+                      <input type="text" id="checkoutAddress" class="input-field" style="padding-left: 16px;" placeholder="123 Main St, Suite 400" required>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Section 2: Payment select and CC details -->
+                <div class="checkout-section">
+                  <h3>
+                    <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    Payment Method
+                  </h3>
+                  
+                  <div class="payment-methods-grid">
+                    <div class="payment-method-card active" data-method="card" onclick="selectPaymentMethod('card', this)">
+                      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                      <span class="payment-method-title">Credit Card</span>
+                    </div>
+                    
+                    <div class="payment-method-card" data-method="applepay" onclick="selectPaymentMethod('applepay', this)">
+                      <svg viewBox="0 0 24 24"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.48C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.1 16.67C20.08 16.74 19.67 18.11 18.71 19.5M15.97 4.17C16.63 3.37 17.07 2.28 16.95 1C15.96 1.04 14.76 1.66 14.05 2.5C13.45 3.2 12.92 4.3 13.07 5.57C14.17 5.66 15.3 5.01 15.97 4.17Z"/></svg>
+                      <span class="payment-method-title">Apple Pay</span>
+                    </div>
+                    
+                    <div class="payment-method-card" data-method="cod" onclick="selectPaymentMethod('cod', this)">
+                      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                      <span class="payment-method-title">COD</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Interactive credit card preview & fields wrapper -->
+                  <div id="creditCardFields">
+                    <!-- Rotating card layout -->
+                    <div class="card-preview-area">
+                      <div class="credit-card" id="creditCardPreview">
+                        <div class="card-face card-front">
+                          <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="card-chip"></div>
+                            <span class="card-logo">VISA</span>
+                          </div>
+                          <div class="card-number-display" id="ccDisplayNumber">•••• •••• •••• ••••</div>
+                          <div class="card-info-row">
+                            <div>
+                              <div class="card-info-label">Card Holder</div>
+                              <div class="card-info-val" id="ccDisplayName">CARDHOLDER NAME</div>
+                            </div>
+                            <div>
+                              <div class="card-info-label">Expires</div>
+                              <div class="card-info-val" id="ccDisplayExpiry">MM/YY</div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="card-face card-back">
+                          <div class="card-magnetic-strip"></div>
+                          <div class="card-signature-strip">
+                            <span class="card-cvv-display" id="ccDisplayCvv">•••</span>
+                          </div>
+                          <div style="padding: 0 24px; text-align: right; font-size: 0.6rem; color: var(--text-muted);">
+                            Authorized Signature. Antigravity Food System Security.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Form input details -->
+                    <div class="checkout-form-grid">
+                      <div class="form-group full">
+                        <label for="checkoutCardName">Cardholder Name</label>
+                        <input type="text" id="checkoutCardName" class="input-field" style="padding-left: 16px;" placeholder="JOHN DOE" required>
+                      </div>
+                      
+                      <div class="form-group full">
+                        <label for="checkoutCardNumber">Card Number</label>
+                        <input type="text" id="checkoutCardNumber" class="input-field" style="padding-left: 16px;" placeholder="4000 1234 5678 9010" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="checkoutCardExpiry">Expiry Date</label>
+                        <input type="text" id="checkoutCardExpiry" class="input-field" style="padding-left: 16px;" placeholder="MM/YY" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="checkoutCardCvv">CVV Code</label>
+                        <input type="password" id="checkoutCardCvv" class="input-field" style="padding-left: 16px;" placeholder="•••" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <button type="submit" style="display:none;"></button> <!-- Hidden submit trigger -->
+              </form>
+            </div>
+            
+            <!-- Right Side: Sticky Cart Breakdown summary -->
+            <div class="checkout-summary-column">
+              <div class="checkout-summary">
+                <h4>Order Summary</h4>
+                
+                <div class="summary-items-list" id="summaryItemsList">
+                  <!-- JS Rendered -->
+                </div>
+                
+                <div class="bill-breakdown">
+                  <div class="bill-row">
+                    <span>Items Subtotal</span>
+                    <span id="summarySubtotal">$0.00</span>
+                  </div>
+                  <div class="bill-row" id="summaryDiscountRow" style="display:none;">
+                    <span>Promo Applied</span>
+                    <span id="summaryDiscount">-$0.00</span>
+                  </div>
+                  <div class="bill-row">
+                    <span>Delivery Fee</span>
+                    <span id="summaryDelivery">$0.00</span>
+                  </div>
+                  <div class="bill-row">
+                    <span>Platform Fee</span>
+                    <span id="summaryPlatform">$0.99</span>
+                  </div>
+                  <div class="bill-row">
+                    <span>GST & Taxes (8%)</span>
+                    <span id="summaryTax">$0.00</span>
+                  </div>
+                  <div class="bill-row total">
+                    <span>Total Amount</span>
+                    <span id="summaryGrandTotal">$0.00</span>
+                  </div>
+                </div>
+                
+                <button type="button" class="btn btn-primary pay-now-btn" id="payNowBtn" onclick="document.getElementById('checkoutForm').querySelector('button[type=submit]').click()">Pay Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- SUB-VIEW 4: ORDER TRACKING -->
+        <div id="trackingSubview" class="app-subview" style="display: none;">
+          <div class="tracking-container">
+            <div class="success-banner">
+              <div class="checkmark-circle">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+              </div>
+              <h2>Order Placed Successfully!</h2>
+              <p class="order-id-txt" id="trackingOrderId">Order ID: AGY-XXXXXX</p>
+            </div>
+            
+            <div class="est-delivery-card">
+              <span class="est-time">15 - 25 Min</span>
+              <span class="est-label">Estimated Delivery Time</span>
+            </div>
+            
+            <!-- Timeline Stages representation -->
+            <div class="timeline">
+              <div class="timeline-line"></div>
+              <div class="timeline-progress-line" id="timelineProgressLine"></div>
+              
+              <div class="timeline-step" id="step-ordered">
+                <div class="step-bubble">
+                  <svg viewBox="0 0 24 24"><path d="M18 17H6v-2h12v2zm3-4H3v-2h18v2zm-3-4H6V7h12v2z"/></svg>
+                </div>
+                <span class="step-label">Ordered</span>
+              </div>
+              
+              <div class="timeline-step" id="step-preparing">
+                <div class="step-bubble">
+                  <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.18 19.58 10.55 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                </div>
+                <span class="step-label">Preparing</span>
+              </div>
+              
+              <div class="timeline-step" id="step-dispatched">
+                <div class="step-bubble">
+                  <svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57l-1.43-1.43 1.43-1.43L13.43 9.14 12 10.57l1.43 1.43-5 5-1.43-1.43L9.57 12.8 6 16.37l-1.43-1.43L6 13.51l-2.14-2.14 1.43-1.43 2.14 2.14 5-5-1.43-1.43L12.43 4 14.86 6.43z"/></svg>
+                </div>
+                <span class="step-label">Dispatched</span>
+              </div>
+              
+              <div class="timeline-step" id="step-delivered">
+                <div class="step-bubble">
+                  <svg viewBox="0 0 24 24"><path d="M12 2c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.18 19.58 10.55 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                </div>
+                <span class="step-label">Delivered</span>
+              </div>
+            </div>
+            
+            <a href="#/home" class="btn btn-secondary">Order Something Else</a>
+          </div>
+        </div>
+        
+      </main>
+    </div>
+  </div>
+
+
+  <!-- --- PERSISTENT CART DRAWER SLIDE-IN OVERLAY --- -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>
+          <svg viewBox="0 0 24 24">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          Shopping Cart
+        </h3>
+        <button class="close-cart-btn" id="closeCartBtn" aria-label="Close cart">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- List container for selected items -->
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Rendered via JS -->
+      </div>
+      
+      <!-- Bottom billing breakdown footer -->
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="promo-code-row">
+          <input type="text" placeholder="Promo Code (SAVE20, SAVE50)" class="promo-input" id="promoInput">
+          <button class="promo-apply-btn" onclick="applyPromoCode()">Apply</button>
+        </div>
+        <span class="promo-status" id="promoStatus">Status</span>
+        
+        <div class="bill-breakdown">
+          <div class="bill-row">
+            <span>Items Subtotal</span>
+            <span id="subtotalPrice">$0.00</span>
+          </div>
+          <div class="bill-row" id="discountRow" style="display:none;">
+            <span>Discount Applied</span>
+            <span id="discountPrice">-$0.00</span>
+          </div>
+          <div class="bill-row">
+            <span>Delivery Fee</span>
+            <span id="deliveryPrice">$0.00</span>
+          </div>
+          <div class="bill-row">
+            <span>Platform Fee</span>
+            <span id="platformPrice">$0.99</span>
+          </div>
+          <div class="bill-row">
+            <span>GST & Service Tax (8%)</span>
+            <span id="taxPrice">$0.00</span>
+          </div>
+          <div class="bill-row total">
+            <span>Grand Total</span>
+            <span id="grandTotalPrice">$0.00</span>
+          </div>
+        </div>
+        
+        <button class="btn btn-primary checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- --- PERSISTENT FLOATING NOTIFICATIONS TOAST LIST --- -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+
+  <!-- --- TRANSACTION PROCESSING LOADER BACKDROP --- -->
+  <div class="payment-processing-overlay" id="paymentProcessingOverlay">
+    <div class="spinner"></div>
+    <span class="processing-text">Processing Secure Payment...</span>
+    <span style="font-size: 0.85rem; color: var(--text-muted);">Please do not refresh or navigate away</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
